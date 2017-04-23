@@ -1,0 +1,19 @@
+{
+  "name": "fgosimulator",
+  "version": "1.0.0",
+  "description": "none",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Cuuube/fgosimulater.git"
+  },
+  "author": "Sater",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cuuube/fgosimulater/issues"
+  },
+  "homepage": "https://github.com/Cuuube/fgosimulater#readme"
+}
