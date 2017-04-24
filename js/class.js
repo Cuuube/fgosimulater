@@ -11,6 +11,7 @@ class Hero {
             ],
             this.ace = obj.ace;
         this.info = obj.info;
+        this.buff = obj.buff;
     }
 
 }

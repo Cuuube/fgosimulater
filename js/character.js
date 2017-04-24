@@ -2,6 +2,7 @@ let zhendeAlter = new Hero({
     name: "贞德(alter)",
     attrbute: {
         work: "avenger",
+        hiddenCamp: 'human',
         hp: 9352,
         atk: 10556,
         createStarsRate: 0.06,
@@ -13,15 +14,15 @@ let zhendeAlter = new Hero({
     skills: {
         0: new Skill({
             name: "自我改造",
-            effect: function(Ying) {
-                setBuff(Ying.buff.critDemage, 0.2, 3);
-                setBuff(Ying.buff.focusStar, 4, 3);
+            effect: function(target) {
+                setBuff(target.buff.critDemage, 0.2, 3);
+                setBuff(target.buff.focusStar, 4, 3);
             }
         }),
         1: new Skill({
             name: "龙之魔女",
-            effect: function(allYings) {
-                allYings.forEach((Ying, index) => {
+            effect: function(target) {
+                target.forEach((Ying, index) => {
                     setBuff(Ying.buff.addDemage, Ying.buff.addDemage, 0.1, 3);
                     if (Ying.info.type.includes('dragon')) {
                         setBuff(Ying.buff.addDemage, Ying.buff.addDemage, Ying.buff.addDemage + 0.1, 3);
@@ -31,10 +32,10 @@ let zhendeAlter = new Hero({
         }),
         2: new Skill({
             name: "泡沫般的梦幻",
-            effect: function(Ying) {
-                setBuff(Ying.buff.mofangR, Ying.buff.mofangR, 0.3, 1);
-                setBuff(Ying.buff.wudi, Ying.buff.wudi, true, 1);
-                Ying.buff.focusStar = 4;
+            effect: function(target) {
+                setBuff(target.buff.mofangR, target.buff.mofangR, 0.3, 1);
+                setBuff(target.buff.wudi, target.buff.wudi, true, 1);
+                target.buff.focusStar = 4;
             }
         })
     },
@@ -42,6 +43,7 @@ let zhendeAlter = new Hero({
     ace: {
         name: "燃烧吧，我的愤怒",
         type: "buster",
+        lv: 1,
         effect: function(armys) {
 
         }
@@ -54,11 +56,34 @@ let zhendeAlter = new Hero({
         from: 'history',
         growing: 'up'
     },
+    buff: {
+        specialAtkBuff: {
+            value: 0,
+            round: 0,
+        },
+        criAddDemage: {
+            value: 0,
+            round: 0,
+        },
+        demageNum: {
+            value: 0,
+            round: 0,
+        },
+        defenceNum: {
+            value: 0,
+            round: 0,
+        },
+        addDemage: {
+            value: 0,
+            round: 0
+        }
+    }
 });
 let zhende = new Hero({
     name: "贞德",
     attrbute: {
         work: "ruler",
+        hiddenCamp: 'human',
         hp: 10361,
         atk: 6056,
         createStarsRate: 0.11,
@@ -106,6 +131,31 @@ let zhende = new Hero({
         from: 'history',
         growing: 'down'
     },
-
+    buff: {
+        specialAtkBuff: {
+            value: 0,
+            round: 0,
+        },
+        criAddDemage: {
+            value: 0,
+            round: 0,
+        },
+        demageNum: {
+            value: 0,
+            round: 0,
+        },
+        defenceNum: {
+            value: 0,
+            round: 0,
+        },
+        addDemage: {
+            value: 0,
+            round: 0,
+        },
+        addDefence: {
+            value: 0,
+            round: 0,
+        }
+    }
 });
 console.log(zhendeAlter);
