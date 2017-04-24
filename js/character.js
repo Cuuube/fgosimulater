@@ -2,7 +2,7 @@ let zhendeAlter = new Hero({
     name: "贞德(alter)",
     attrbute: {
         work: "avenger",
-        hiddenCamp: 'human',
+        hiddenCamp: 'earch',
         hp: 9352,
         atk: 10556,
         createStarsRate: 0.06,
@@ -15,8 +15,8 @@ let zhendeAlter = new Hero({
         0: new Skill({
             name: "自我改造",
             effect: function(target) {
-                setBuff(target.buff.critDemage, 0.2, 3);
-                setBuff(target.buff.focusStar, 4, 3);
+                setBuff(target, critDemage, 0.2, 3);
+                setBuff(target, focusStar, 4, 3);
             }
         }),
         1: new Skill({
@@ -25,7 +25,7 @@ let zhendeAlter = new Hero({
                 target.forEach((Ying, index) => {
                     setBuff(Ying.buff.addDemage, Ying.buff.addDemage, 0.1, 3);
                     if (Ying.info.type.includes('dragon')) {
-                        setBuff(Ying.buff.addDemage, Ying.buff.addDemage, Ying.buff.addDemage + 0.1, 3);
+                        setBuff(Ying, addDemage, 0.1, 3);
                     }
                 })
             }
@@ -33,8 +33,8 @@ let zhendeAlter = new Hero({
         2: new Skill({
             name: "泡沫般的梦幻",
             effect: function(target) {
-                setBuff(target.buff.mofangR, target.buff.mofangR, 0.3, 1);
-                setBuff(target.buff.wudi, target.buff.wudi, true, 1);
+                setBuff(target.buff.mofangR, 0.3, 1);
+                setBuff(target.buff.wudi, true, 1);
                 target.buff.focusStar = 4;
             }
         })
@@ -43,6 +43,8 @@ let zhendeAlter = new Hero({
     ace: {
         name: "燃烧吧，我的愤怒",
         type: "buster",
+        percent: 6,
+        specialAtk: 1,
         lv: 1,
         effect: function(armys) {
 
@@ -57,32 +59,24 @@ let zhendeAlter = new Hero({
         growing: 'up'
     },
     buff: {
-        specialAtkBuff: {
-            value: 0,
-            round: 0,
-        },
-        criAddDemage: {
-            value: 0,
-            round: 0,
-        },
-        demageNum: {
-            value: 0,
-            round: 0,
-        },
-        defenceNum: {
-            value: 0,
-            round: 0,
-        },
-        addDemage: {
-            value: 0,
-            round: 0
+        specialAtkBuff: new Buff(0),
+        criAddDemage: new Buff(3),
+        demageNum: new Buff(0),
+        defenceNum: new Buff(0),
+        addDemage: new Buff(0.6),
+        addDefence: new Buff(0),
+        aceAtkBuff: new Buff(0),
+        cardExplode: {
+            'buster': new Buff(2.1),
+            'quick': new Buff(0),
+            'art': new Buff(0),
         }
     }
 });
 let zhende = new Hero({
     name: "贞德",
     attrbute: {
-        work: "ruler",
+        work: "saber",
         hiddenCamp: 'human',
         hp: 10361,
         atk: 6056,
@@ -96,21 +90,20 @@ let zhende = new Hero({
         0: new Skill({
             name: "启示",
             effect: function(battle) {
-                setBuff(battle.buff.getStars, battle.buff.getStars, 3, 3);
+                setBuff(battle, getStars, 3, 3);
             }
         }),
         1: new Skill({
             name: "真名看破",
             effect: function(army) {
-                setBuff(army.buff.addDemage, army.buff.addDemage, -0.15, 3);
-
+                setBuff(army, addDemage, -0.15, 3);
             }
         }),
         2: new Skill({
             name: "神明裁决",
             effect: function(target) {
                 if (getRandom(0.7)) {
-                    setBuff(target.buff.buzhundong, target.buff.buzhundong, true, 1);
+                    setBuff(target, buzhundong, true, 1);
                 }
             }
         })
@@ -132,29 +125,17 @@ let zhende = new Hero({
         growing: 'down'
     },
     buff: {
-        specialAtkBuff: {
-            value: 0,
-            round: 0,
-        },
-        criAddDemage: {
-            value: 0,
-            round: 0,
-        },
-        demageNum: {
-            value: 0,
-            round: 0,
-        },
-        defenceNum: {
-            value: 0,
-            round: 0,
-        },
-        addDemage: {
-            value: 0,
-            round: 0,
-        },
-        addDefence: {
-            value: 0,
-            round: 0,
+        specialAtkBuff: new Buff(0),
+        criAddDemage: new Buff(0),
+        demageNum: new Buff(0),
+        defenceNum: new Buff(0),
+        addDemage: new Buff(0),
+        addDefence: new Buff(0),
+        aceAtkBuff: new Buff(0),
+        cardExplode: {
+            'buster': new Buff(0),
+            'quick': new Buff(0),
+            'art': new Buff(0),
         }
     }
 });
